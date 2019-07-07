@@ -12,8 +12,10 @@
             <e p="EditorTemp.cs" t="Include" />
             <e p="Generation" t="Include">
               <e p="EditorWindow.cs" t="Include" />
-              <e p="Graph.cs" t="Include" />
-              <e p="Node.cs" t="Include" />
+              <e p="GenerationGraph.cs" t="Include" />
+              <e p="GenerationGraphGUI.cs" t="Include" />
+              <e p="GenerationTemplateNode.cs" t="Include" />
+              <e p="GeneratorNode.cs" t="Include" />
             </e>
           </e>
           <e p="Generation" t="Include">

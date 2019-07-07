@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Generation
 {
-    public class GeneratorComposition : Object
+    public class GeneratorComposition : ScriptableObject
     {
         public Generator destinationGenerator;
         public int minRequired;
