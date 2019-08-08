@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: de4d7e8a29e704941a96ae46a52cb8d7
+labels:
+- Graph
+- Node
+- flow
+- visual
+- scripting
+timeCreated: 1427183286
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
