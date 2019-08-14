@@ -28,10 +28,10 @@ namespace Generation.Nodes
         }
 
         protected override void RegisterPorts() {
-            var o = AddFlowOutput("Out");
+            var o = AddGenerationOutput("Out");
             var v = AddValueInput<T>("Value");
             AddValueOutput<T>("Value", () => { return targetVariable.value; });
-            AddFlowInput("In", (f) => { DoSet(v.value); o.Call(f); });
+            AddGenerationInput("In", (f) => { DoSet(v.value); o.Call(f); });
         }
 
         void DoSet(T value) {

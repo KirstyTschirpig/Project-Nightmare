@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Generation;
 using ParadoxNotion;
+using UnityEngine;
 
 namespace Generation.Graphs
 {
@@ -27,6 +28,7 @@ namespace Generation.Graphs
         private Dictionary<string, object> parameters;
         private ReturnData returnData;
         private GenerationFlowBreak breakCall;
+        private GameObject currentGeneratedResult;
 
         ///Short for 'new Flow()'
         public static GenerationFlow New { get { return new GenerationFlow(); } }
@@ -51,6 +53,16 @@ namespace Generation.Graphs
                 parameters = new Dictionary<string, object>();
             }
             parameters[name] = value;
+        }
+
+        public GameObject GetCurrentGenerationResult()
+        {
+            return currentGeneratedResult;
+        }
+
+        public void SetCurrentGenerationResult(GameObject gameObject)
+        {
+            currentGeneratedResult = gameObject;
         }
 
         ///----------------------------------------------------------------------------------------------

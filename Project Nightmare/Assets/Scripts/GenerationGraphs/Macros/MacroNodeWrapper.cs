@@ -73,7 +73,7 @@ namespace Generation.Graphs.Macros
             for ( var i = 0; i < macro.inputDefinitions.Count; i++ ) {
                 var defIn = macro.inputDefinitions[i];
                 if ( defIn.type == typeof(GenerationFlow) ) {
-                    AddFlowInput(defIn.name, (f) => { macro.entryActionMap[defIn.ID](f); }, defIn.ID);
+                    AddGenerationInput(defIn.name, (f) => { macro.entryActionMap[defIn.ID](f); }, defIn.ID);
                 } else {
                     macro.entryFunctionMap[defIn.ID] = AddValueInput(defIn.name, defIn.type, defIn.ID).GetObjectValue;
                 }
@@ -82,7 +82,7 @@ namespace Generation.Graphs.Macros
             for ( var i = 0; i < macro.outputDefinitions.Count; i++ ) {
                 var defOut = macro.outputDefinitions[i];
                 if ( defOut.type == typeof(GenerationFlow) ) {
-                    macro.exitActionMap[defOut.ID] = AddFlowOutput(defOut.name, defOut.ID).Call;
+                    macro.exitActionMap[defOut.ID] = AddGenerationOutput(defOut.name, defOut.ID).Call;
                 } else {
                     AddValueOutput(defOut.name, defOut.type, () => { return macro.exitFunctionMap[defOut.ID](); }, defOut.ID);
                 }

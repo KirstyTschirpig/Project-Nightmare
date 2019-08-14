@@ -51,7 +51,7 @@ namespace Generation.Graphs
             displayName = name.SplitCamelCase();
             var displayNameCaped = displayName.CapLength(25);
             if ( IsFlowPort() ) {
-                if ( this is FlowInput ) {
+                if ( this is GenerationInput ) {
                     content.text = string.Format("<b>► {0}</b>", displayNameCaped);
                 } else {
                     content.text = string.Format("<b>{0} ►</b>", displayNameCaped);
@@ -108,7 +108,7 @@ namespace Generation.Graphs
             if ( this is ValueOutput || ( this is GenerationOutput && !this.isConnected ) ) {
                 return true;
             }
-            if ( this is FlowInput || ( this is ValueInput && !this.isConnected ) ) {
+            if ( this is GenerationInput || ( this is ValueInput && !this.isConnected ) ) {
                 return true;
             }
             return false;
@@ -133,7 +133,7 @@ namespace Generation.Graphs
         }
 
         public bool IsFlowPort() {
-            return ( this is FlowInput ) || ( this is GenerationOutput );
+            return ( this is GenerationInput ) || ( this is GenerationOutput );
         }
 
         public bool IsValuePort() {
@@ -141,7 +141,7 @@ namespace Generation.Graphs
         }
 
         public bool IsInputPort() {
-            return ( this is FlowInput ) || ( this is ValueInput );
+            return ( this is GenerationInput ) || ( this is ValueInput );
         }
 
         public bool IsOutputPort() {
@@ -179,11 +179,11 @@ namespace Generation.Graphs
     ///----------------------------------------------------------------------------------------------
 
     ///Input port for Flow type
-    public class FlowInput : Port
+    public class GenerationInput : Port
     {
 
         ///pointer refers to callback when the port is called
-        public FlowInput(GenerationNode parent, string name, string ID, GenerationFlowHandler pointer) : base(parent, name, ID) {
+        public GenerationInput(GenerationNode parent, string name, string ID, GenerationFlowHandler pointer) : base(parent, name, ID) {
             this.pointer = pointer;
         }
 
@@ -249,7 +249,7 @@ namespace Generation.Graphs
 
 
         ///Bind the port to the target FlowInput
-        public void BindTo(FlowInput target) {
+        public void BindTo(GenerationInput target) {
             this.pointer = target.pointer;
         }
 

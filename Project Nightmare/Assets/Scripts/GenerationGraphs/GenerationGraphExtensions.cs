@@ -227,7 +227,7 @@ namespace Generation.Graphs
                         }
                     }
 
-                    if ( sourcePort is ValueInput || sourcePort is FlowInput ) {
+                    if ( sourcePort is ValueInput || sourcePort is GenerationInput ) {
                         if ( concreteOutputTypes == null || !concreteOutputTypes.Any(t => t != null && sourcePort.type.IsAssignableFrom(t)) ) {
                             continue;
                         }
@@ -276,7 +276,7 @@ namespace Generation.Graphs
                                 continue;
                             }
                         }
-                        if ( sourcePort is GenerationOutput || sourcePort is FlowInput ) {
+                        if ( sourcePort is GenerationOutput || sourcePort is GenerationInput ) {
                             if ( method.ReturnType != typeof(void) && method.ReturnType != typeof(System.Collections.IEnumerator) ) {
                                 continue;
                             }
@@ -347,7 +347,7 @@ namespace Generation.Graphs
                     }
                 }
 
-                if ( sourcePort is ValueInput || sourcePort is FlowInput ) {
+                if ( sourcePort is ValueInput || sourcePort is GenerationInput ) {
                     if ( !macro.outputDefinitions.Select(d => d.type).Any(d => sourcePort.type.IsAssignableFrom(d)) ) {
                         continue;
                     }

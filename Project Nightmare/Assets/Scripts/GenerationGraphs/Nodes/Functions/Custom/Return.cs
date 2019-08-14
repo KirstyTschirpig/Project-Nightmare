@@ -18,7 +18,7 @@ namespace Generation.Nodes
             if ( useReturnValue ) {
                 returnPort = AddValueInput<object>("Value");
             }
-            AddFlowInput(" ", (f) => { f.Return(useReturnValue ? returnPort.value : null, this); });
+            AddGenerationInput(" ", (f) => { f.Return(useReturnValue ? returnPort.value : null, this); });
         }
     }
 

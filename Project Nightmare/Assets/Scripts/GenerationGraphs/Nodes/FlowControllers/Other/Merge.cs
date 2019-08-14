@@ -18,9 +18,9 @@ namespace Generation.Nodes
         private int _portCount = 4;
 
         protected override void RegisterPorts() {
-            var fOut = AddFlowOutput("Out");
+            var fOut = AddGenerationOutput("Out");
             for ( var i = 0; i < _portCount; i++ ) {
-                AddFlowInput(i.ToString(), fOut.Call);
+                AddGenerationInput(i.ToString(), fOut.Call);
             }
         }
     }

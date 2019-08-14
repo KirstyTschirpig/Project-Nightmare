@@ -9,7 +9,7 @@ namespace Generation.Nodes
     {
         protected override void RegisterPorts() {
             var c = AddValueInput<bool>("Success");
-            AddFlowInput("In", (f) => { graph.Stop(c.value); });
+            AddGenerationInput("In", (f) => { graph.Stop(c.value); });
         }
     }
 }

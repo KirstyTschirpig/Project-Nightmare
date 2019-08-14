@@ -27,9 +27,9 @@ namespace Generation.Nodes
             varName = AddValueInput<string>("Variable");
             var v = AddValueInput<T>("Value");
 
-            var o = AddFlowOutput("Out");
+            var o = AddGenerationOutput("Out");
             AddValueOutput<T>("Value", () => { return bb.value.GetValue<T>(varName.value); });
-            AddFlowInput("In", (f) => { DoSet(bb.value, varName.value, v.value); o.Call(f); });
+            AddGenerationInput("In", (f) => { DoSet(bb.value, varName.value, v.value); o.Call(f); });
         }
 
         void DoSet(Blackboard bb, string name, T value) {

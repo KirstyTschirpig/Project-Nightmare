@@ -81,7 +81,7 @@ namespace Generation.Graphs
             source.parent.graph.RecordUndo("Connect Ports");
 
             BinderConnection binder = null;
-            if ( source is GenerationOutput && target is FlowInput ) {
+            if ( source is GenerationOutput && target is GenerationInput ) {
                 binder = new BinderConnection();
             }
 
@@ -281,8 +281,8 @@ namespace Generation.Graphs
                 return;
             }
 
-            if ( sourcePort is GenerationOutput && targetPort is FlowInput ) {
-                ( sourcePort as GenerationOutput ).BindTo((FlowInput)targetPort);
+            if ( sourcePort is GenerationOutput && targetPort is GenerationInput ) {
+                ( sourcePort as GenerationOutput ).BindTo((GenerationInput)targetPort);
 
 #if UNITY_EDITOR && DO_EDITOR_BINDING
                 ( sourcePort as GenerationOutput ).Append(BlinkStatus);

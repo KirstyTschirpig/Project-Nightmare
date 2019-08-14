@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Generation.Graphs.Macros;
 using Generation.Graphs.Nodes;
+using Generation.Nodes;
 using NodeCanvas.Framework;
 using ParadoxNotion;
 using UnityEngine;
@@ -120,6 +121,16 @@ namespace Generation.Graphs
             }
 
             hasInitialized = true;
+
+            //Start the current leaf node
+            foreach (var node in allNodes)
+            {
+                if (node is GenerationStart)
+                {
+                    var start = (GenerationStart) node;
+                    start.Start();
+                }
+            }
         }
 
         //Update IUpdatable nodes. Basicaly for events like Input, Update etc

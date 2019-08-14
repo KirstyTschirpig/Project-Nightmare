@@ -174,8 +174,8 @@ namespace Generation.Graphs
         }
 
         ///Returns all Flow Input Ports
-        public FlowInput[] GetInputFlowPorts() {
-            return inputPorts.Values.OfType<FlowInput>().ToArray();
+        public GenerationInput[] GetInputFlowPorts() {
+            return inputPorts.Values.OfType<GenerationInput>().ToArray();
         }
 
         ///Returns all Value Input Ports
@@ -187,12 +187,12 @@ namespace Generation.Graphs
 
         ///Returns the first input port assignable to the type provided
         public Port GetFirstInputOfType(Type type) {
-            return inputPorts.Values.OrderBy(p => p is FlowInput ? 0 : 1).FirstOrDefault(p => p.type.RTIsAssignableFrom(type));
+            return inputPorts.Values.OrderBy(p => p is GenerationInput ? 0 : 1).FirstOrDefault(p => p.type.RTIsAssignableFrom(type));
         }
 
         ///Returns the first output port of a type assignable to the port
         public Port GetFirstOutputOfType(Type type) {
-            return outputPorts.Values.OrderBy(p => p is FlowInput ? 0 : 1).FirstOrDefault(p => type.RTIsAssignableFrom(p.type));
+            return outputPorts.Values.OrderBy(p => p is GenerationInput ? 0 : 1).FirstOrDefault(p => type.RTIsAssignableFrom(p.type));
         }
 
         ///----------------------------------------------------------------------------------------------
@@ -278,14 +278,14 @@ namespace Generation.Graphs
         //Port registration/definition methods, to be used within RegisterPorts override
 
         ///Add a new FlowInput with name and pointer. Pointer is the method to run when the flow port is called. Returns the new FlowInput object.
-        public FlowInput AddFlowInput(string name, string ID, GenerationFlowHandler pointer) { return AddFlowInput(name, pointer, ID); }
-        public FlowInput AddFlowInput(string name, GenerationFlowHandler pointer, string ID = "") {
+        public GenerationInput AddGenerationInput(string name, string ID, GenerationFlowHandler pointer) { return AddGenerationInput(name, pointer, ID); }
+        public GenerationInput AddGenerationInput(string name, GenerationFlowHandler pointer, string ID = "") {
             QualifyPortNameAndID(ref name, ref ID, inputPorts);
-            return (FlowInput)( inputPorts[ID] = new FlowInput(this, name, ID, pointer) );
+            return (GenerationInput)( inputPorts[ID] = new GenerationInput(this, name, ID, pointer) );
         }
 
         ///Add a new FlowOutput with name. Returns the new FlowOutput object.
-        public GenerationOutput AddFlowOutput(string name, string ID = "") {
+        public GenerationOutput AddGenerationOutput(string name, string ID = "") {
             QualifyPortNameAndID(ref name, ref ID, outputPorts);
             return (GenerationOutput)( outputPorts[ID] = new GenerationOutput(this, name, ID) );
         }
@@ -361,13 +361,13 @@ namespace Generation.Graphs
         }
 
         ///Register a MethodInfo as FlowInput. Used only in reflection based registration.
-        public FlowInput TryAddMethodFlowInput(MethodInfo method, object instance) {
+        public GenerationInput TryAddMethodFlowInput(MethodInfo method, object instance) {
             var parameters = method.GetParameters();
             if ( method.ReturnType == typeof(void) && parameters.Length == 1 && parameters[0].ParameterType == typeof(GenerationFlow) ) {
                 var nameAtt = method.RTGetAttribute<NameAttribute>(false);
                 var name = nameAtt != null ? nameAtt.name : method.Name;
                 var pointer = method.RTCreateDelegate<GenerationFlowHandler>(instance);
-                return AddFlowInput(name, pointer);
+                return AddGenerationInput(name, pointer);
             }
             return null;
         }
@@ -377,7 +377,7 @@ namespace Generation.Graphs
             if ( field.FieldType == typeof(GenerationFlowHandler) ) {
                 var nameAtt = field.RTGetAttribute<NameAttribute>(false);
                 var name = nameAtt != null ? nameAtt.name : field.Name;
-                var flowOut = AddFlowOutput(name);
+                var flowOut = AddGenerationOutput(name);
                 field.SetValue(instance, (GenerationFlowHandler)flowOut.Call);
                 return flowOut;
             }
@@ -597,7 +597,7 @@ namespace Generation.Graphs
         //when gathering ports and we are in Unity Editor
         //gather the ordered inputs and outputs
         void OnPortsGatheredInEditor() {
-            orderedInputs = inputPorts.Values.OrderBy(p => p is FlowInput ? 0 : 1).ToArray();
+            orderedInputs = inputPorts.Values.OrderBy(p => p is GenerationInput ? 0 : 1).ToArray();
             orderedOutputs = outputPorts.Values.OrderBy(p => p is GenerationOutput || p.IsDelegate() ? 0 : 1).ToArray();
             selfInstancePort = orderedInputs.OfType<ValueInput>().FirstOrDefault(p => p.IsUnitySceneObject());
         }

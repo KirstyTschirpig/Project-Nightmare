@@ -113,13 +113,13 @@ namespace Generation.Nodes
         protected override void OnRegisterPorts(GenerationNode node) {
             //to make update safe from previous version, the ID (2nd string), is same as the old version. The first string, is the display name.
             if ( allowRoutineQueueing ) {
-                onStart = node.AddFlowOutput("Start", "Out");
-                onUpdate = node.AddFlowOutput("Update", "Doing");
+                onStart = node.AddGenerationOutput("Start", "Out");
+                onUpdate = node.AddGenerationOutput("Update", "Doing");
             }
-            onFinish = node.AddFlowOutput("Finish", "Done");
+            onFinish = node.AddGenerationOutput("Finish", "Done");
             OnRegisterDerivedPorts(node);
             if ( allowRoutineQueueing ) {
-                node.AddFlowInput("Break", (f) => { BreakAll(); });
+                node.AddGenerationInput("Break", (f) => { BreakAll(); });
             }
         }
 
@@ -141,7 +141,7 @@ namespace Generation.Nodes
     {
         abstract public IEnumerator Invoke();
         sealed protected override void OnRegisterDerivedPorts(GenerationNode node) {
-            node.AddFlowInput("In", (f) => { Begin(Invoke(), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(), f); });
         }
     }
 
@@ -150,7 +150,7 @@ namespace Generation.Nodes
         abstract public IEnumerator Invoke(T1 a);
         sealed protected override void OnRegisterDerivedPorts(GenerationNode node) {
             var p1 = node.AddValueInput<T1>(parameters[0].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value), f); });
         }
     }
 
@@ -160,7 +160,7 @@ namespace Generation.Nodes
         sealed protected override void OnRegisterDerivedPorts(GenerationNode node) {
             var p1 = node.AddValueInput<T1>(parameters[0].Name);
             var p2 = node.AddValueInput<T2>(parameters[1].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value), f); });
         }
     }
 
@@ -171,7 +171,7 @@ namespace Generation.Nodes
             var p1 = node.AddValueInput<T1>(parameters[0].Name);
             var p2 = node.AddValueInput<T2>(parameters[1].Name);
             var p3 = node.AddValueInput<T3>(parameters[2].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value), f); });
         }
     }
 
@@ -183,7 +183,7 @@ namespace Generation.Nodes
             var p2 = node.AddValueInput<T2>(parameters[1].Name);
             var p3 = node.AddValueInput<T3>(parameters[2].Name);
             var p4 = node.AddValueInput<T4>(parameters[3].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value), f); });
         }
     }
 
@@ -196,7 +196,7 @@ namespace Generation.Nodes
             var p3 = node.AddValueInput<T3>(parameters[2].Name);
             var p4 = node.AddValueInput<T4>(parameters[3].Name);
             var p5 = node.AddValueInput<T5>(parameters[4].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value), f); });
         }
     }
 
@@ -210,7 +210,7 @@ namespace Generation.Nodes
             var p4 = node.AddValueInput<T4>(parameters[3].Name);
             var p5 = node.AddValueInput<T5>(parameters[4].Name);
             var p6 = node.AddValueInput<T6>(parameters[5].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value), f); });
         }
     }
 
@@ -225,7 +225,7 @@ namespace Generation.Nodes
             var p5 = node.AddValueInput<T5>(parameters[4].Name);
             var p6 = node.AddValueInput<T6>(parameters[5].Name);
             var p7 = node.AddValueInput<T7>(parameters[6].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value, p7.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value, p7.value), f); });
         }
     }
 
@@ -241,7 +241,7 @@ namespace Generation.Nodes
             var p6 = node.AddValueInput<T6>(parameters[5].Name);
             var p7 = node.AddValueInput<T7>(parameters[6].Name);
             var p8 = node.AddValueInput<T8>(parameters[7].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value, p7.value, p8.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value, p7.value, p8.value), f); });
         }
     }
 
@@ -258,7 +258,7 @@ namespace Generation.Nodes
             var p7 = node.AddValueInput<T7>(parameters[6].Name);
             var p8 = node.AddValueInput<T8>(parameters[7].Name);
             var p9 = node.AddValueInput<T9>(parameters[8].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value, p7.value, p8.value, p9.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value, p7.value, p8.value, p9.value), f); });
         }
     }
 
@@ -276,7 +276,7 @@ namespace Generation.Nodes
             var p8 = node.AddValueInput<T8>(parameters[7].Name);
             var p9 = node.AddValueInput<T9>(parameters[8].Name);
             var p10 = node.AddValueInput<T10>(parameters[9].Name);
-            node.AddFlowInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value, p7.value, p8.value, p9.value, p10.value), f); });
+            node.AddGenerationInput("In", (f) => { Begin(Invoke(p1.value, p2.value, p3.value, p4.value, p5.value, p6.value, p7.value, p8.value, p9.value, p10.value), f); });
         }
     }
 

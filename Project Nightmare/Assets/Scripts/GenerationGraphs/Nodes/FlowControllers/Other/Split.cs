@@ -21,9 +21,9 @@ namespace Generation.Nodes
         protected override void RegisterPorts() {
             var outs = new List<GenerationOutput>();
             for ( var i = 0; i < _portCount; i++ ) {
-                outs.Add(AddFlowOutput(i.ToString()));
+                outs.Add(AddGenerationOutput(i.ToString()));
             }
-            AddFlowInput("In", (f) =>
+            AddGenerationInput("In", (f) =>
             {
                 for ( var i = 0; i < _portCount; i++ ) {
                     if ( !graph.isRunning ) {

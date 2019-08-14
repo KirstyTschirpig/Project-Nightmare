@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ebec160059e4cfca905c4db96746ef, type: 3}
+  m_Name: Room
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"version":2.94,"type":"Generation.Graphs.GenerationScript","translation":{"x":275.0,"y":-83.0},"zoomFactor":0.7977405,"nodes":[{"_inputPortValues":{"Create
+    Default Object":{"$content":true,"$type":"System.Boolean"}},"_position":{"x":-8.0,"y":244.0},"$type":"GenerationStart","$id":"2"},{"_inputPortValues":{"Prefab":{"$content":1,"$type":"UnityEngine.GameObject"},"Scale":{"x":0.1,"y":2.0,"z":2.0,"$type":"UnityEngine.Vector3"}},"_position":{"x":219.0,"y":250.0},"$type":"Generation.Nodes.PrefabNode","$id":"4"},{"_inputPortValues":{"Prefab":{"$content":1,"$type":"UnityEngine.GameObject"},"Scale":{"x":0.1,"y":2.0,"z":2.0,"$type":"UnityEngine.Vector3"},"Position":{"x":2.0,"$type":"UnityEngine.Vector3"}},"_position":{"x":397.0,"y":250.0},"$type":"Generation.Nodes.PrefabNode","$id":"6"},{"_inputPortValues":{"Prefab":{"$content":1,"$type":"UnityEngine.GameObject"},"Scale":{"x":2.0,"y":2.0,"z":0.1,"$type":"UnityEngine.Vector3"},"Position":{"x":1.0,"z":-1.0,"$type":"UnityEngine.Vector3"}},"_position":{"x":593.0,"y":249.0},"$type":"Generation.Nodes.PrefabNode","$id":"8"},{"_inputPortValues":{"Prefab":{"$content":1,"$type":"UnityEngine.GameObject"},"Scale":{"x":2.0,"y":2.0,"z":0.1,"$type":"UnityEngine.Vector3"},"Position":{"x":1.0,"z":1.0,"$type":"UnityEngine.Vector3"}},"_position":{"x":768.0,"y":252.0},"$type":"Generation.Nodes.PrefabNode","$id":"10"},{"_inputPortValues":{"Prefab":{"$content":1,"$type":"UnityEngine.GameObject"},"Scale":{"x":2.0,"y":0.1,"z":2.0,"$type":"UnityEngine.Vector3"},"Position":{"x":1.0,"y":-1.0,"$type":"UnityEngine.Vector3"}},"_position":{"x":401.0,"y":398.0},"$type":"Generation.Nodes.PrefabNode","$id":"12"}],"connections":[{"_sourcePortName":"Generator","_targetPortName":"In","_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"4"},"$type":"Generation.Graphs.BinderConnection"},{"_sourcePortName":"Out","_targetPortName":"In","_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"6"},"$type":"Generation.Graphs.BinderConnection"},{"_sourcePortName":"Out","_targetPortName":"In","_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"8"},"$type":"Generation.Graphs.BinderConnection"},{"_sourcePortName":"Out","_targetPortName":"In","_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"10"},"$type":"Generation.Graphs.BinderConnection"},{"_sourcePortName":"Out","_targetPortName":"In","_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"12"},"$type":"Generation.Graphs.BinderConnection"}],"localBlackboard":{"_name":"Local
+    Blackboard","_variables":{}}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 6762155121369764986, guid: 69adc23d5042bc94a93678851aa85edf, type: 3}
+  _deserializationFailed: 0

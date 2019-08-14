@@ -25,7 +25,7 @@ namespace Generation.Graphs.Macros
             for ( var i = 0; i < macro.inputDefinitions.Count; i++ ) {
                 var def = macro.inputDefinitions[i];
                 if ( def.type == typeof(GenerationFlow) ) {
-                    macro.entryActionMap[def.ID] = AddFlowOutput(def.name, def.ID).Call;
+                    macro.entryActionMap[def.ID] = AddGenerationOutput(def.name, def.ID).Call;
                 } else {
                     AddValueOutput(def.name, def.type, () => { return macro.entryFunctionMap[def.ID](); }, def.ID);
                 }
