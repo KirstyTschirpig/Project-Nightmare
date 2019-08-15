@@ -28,7 +28,7 @@ namespace Generation.Graphs
         private Dictionary<string, object> parameters;
         private ReturnData returnData;
         private GenerationFlowBreak breakCall;
-        private GameObject currentGeneratedResult;
+        private GameObjectCreationInfo creationInfo;
 
         ///Short for 'new Flow()'
         public static GenerationFlow New { get { return new GenerationFlow(); } }
@@ -55,14 +55,14 @@ namespace Generation.Graphs
             parameters[name] = value;
         }
 
-        public GameObject GetCurrentGenerationResult()
+        public GameObjectCreationInfo GetCreationInfo()
         {
-            return currentGeneratedResult;
+            return creationInfo;
         }
 
-        public void SetCurrentGenerationResult(GameObject gameObject)
+        public void SetCreationInfo(GameObjectCreationInfo gameObject)
         {
-            currentGeneratedResult = gameObject;
+            creationInfo = gameObject;
         }
 
         ///----------------------------------------------------------------------------------------------

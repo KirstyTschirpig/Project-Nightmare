@@ -11,7 +11,7 @@ namespace Generation.Nodes
     [Description("Spawns a prefab")]
     public class PrefabNode : GenerationControlNode
     {
-        private GameObject createdObject;
+        private GameObjectCreationInfo creationInfo;
 
         protected override void RegisterPorts()
         {
@@ -19,17 +19,18 @@ namespace Generation.Nodes
             var scale = AddValueInput<Vector3>("Scale");
             var position = AddValueInput<Vector3>("Position");
             var output = AddGenerationOutput("Out");
-            var prefabOutput = AddValueOutput<GameObject>("Object", () => { return createdObject; });
+            var prefabOutput = AddValueOutput<GameObjectCreationInfo>("Object", () => { return creationInfo; });
 
             AddGenerationInput("In", (f) =>
             {
-                var parent = f.GetCurrentGenerationResult();
-                createdObject = Object.Instantiate(prefab.value);
-                if(parent != null) createdObject.transform.SetParent(parent.transform);
-                else f.SetCurrentGenerationResult(createdObject);
-                Debug.Log("Created " + prefab.value);
-                createdObject.transform.localPosition = position.value;
-                createdObject.transform.localScale = scale.value;
+                var parent = f.GetCreationInfo();
+                creationInfo = new GameObjectCreationInfo(prefab.value.name);
+                creationInfo.SetTemplate(prefab.value);
+                if(parent != null) parent.AddChild(creationInfo);
+                else f.SetCreationInfo(creationInfo);
+                Debug.Log("Created " + prefab.value.name);
+                creationInfo.position = position.value;
+                creationInfo.scale = scale.value;
                 output.Call(f);
             });
         }

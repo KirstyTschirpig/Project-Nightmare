@@ -19,18 +19,18 @@ public class TransformNode : GenerationControlNode
 
         AddGenerationInput("In", (f) =>
         {
-            if (f.GetCurrentGenerationResult() == null) output.Call(f);
+            if (f.GetCreationInfo() == null) output.Call(f);
 
-            var go = f.GetCurrentGenerationResult();
+            var creationInfo = f.GetCreationInfo();
             if (relative.value)
             {
-                go.transform.position += position.value;
-                go.transform.Rotate(rotation.value);
+                creationInfo.position += position.value;
+                creationInfo.rotation *= Quaternion.Euler(rotation.value);
             }
             else
             {
-                go.transform.position = position.value;
-                go.transform.rotation = Quaternion.Euler(rotation.value);
+                creationInfo.position = position.value;
+                creationInfo.rotation = Quaternion.Euler(rotation.value);
             }
 
             output.Call(f);

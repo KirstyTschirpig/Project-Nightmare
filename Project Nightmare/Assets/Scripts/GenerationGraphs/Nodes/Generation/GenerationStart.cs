@@ -23,7 +23,7 @@ public class GenerationStart : GenerationControlNode
 
         if (shouldCreateDefaultObject.value)
         {
-            flow.SetCurrentGenerationResult(new GameObject("GenerationResult"));
+            flow.SetCreationInfo(new GameObjectCreationInfo("GenerationResult"));
         }
 
         output.Call(flow);
