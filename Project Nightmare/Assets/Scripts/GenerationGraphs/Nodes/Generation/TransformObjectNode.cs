@@ -7,34 +7,27 @@ using ParadoxNotion.Design;
 
 
 [Name("Transform Object")]
+[Description("Transforms an object.")]
 [Category("Generation")]
-public class TransformObjectNode : GenerationControlNode
+public class TransformObjectNode : PureFunctionNode<GameObjectCreationInfo, GameObjectCreationInfo, bool, Vector3, Vector3>
 {
-    protected override void RegisterPorts()
+    public override GameObjectCreationInfo Invoke(GameObjectCreationInfo obj, bool relative, Vector3 position, Vector3 rotation)
     {
-        GenerationOutput output = AddGenerationOutput("Out");
+        if (obj == null) return null;
 
-        ValueInput<bool> relative = AddValueInput<bool>("Relative?");
-        var position = AddValueInput<Vector3>("Position");
-        var rotation = AddValueInput<Vector3>("Rotation");
-        var obj = AddValueInput<GameObject>("Object");
+        var creationInfo = new GameObjectCreationInfo(obj);
 
-        AddGenerationInput("In", (f) =>
+        if (relative)
         {
-            if (obj.value == null) output.Call(f);
+            creationInfo.position += position;
+            creationInfo.rotation *= Quaternion.Euler(rotation);
+        }
+        else
+        {
+            creationInfo.position = position;
+            creationInfo.rotation = Quaternion.Euler(rotation);
+        }
 
-            if (relative.value)
-            {
-                obj.value.transform.position += position.value;
-                obj.value.transform.Rotate(rotation.value);
-            }
-            else
-            {
-                obj.value.transform.position = position.value;
-                obj.value.transform.rotation = Quaternion.Euler(rotation.value);
-            }
-
-            output.Call(f);
-        });
+        return creationInfo;
     }
 }

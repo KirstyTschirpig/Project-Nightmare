@@ -278,6 +278,7 @@
                 <e p="PrefabNode.cs" t="Include" />
                 <e p="RandomPrefabNode.cs" t="Include" />
                 <e p="TileFlowNode.cs" t="Include" />
+                <e p="TileObjectNode.cs" t="Include" />
                 <e p="TransformNode.cs" t="Include" />
                 <e p="TransformObjectNode.cs" t="Include" />
               </e>

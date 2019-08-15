@@ -28,11 +28,23 @@ namespace Generation.Nodes
                 creationInfo.SetTemplate(prefab.value);
                 if(parent != null) parent.AddChild(creationInfo);
                 else f.SetCreationInfo(creationInfo);
-                Debug.Log("Created " + prefab.value.name);
                 creationInfo.position = position.value;
                 creationInfo.scale = scale.value;
                 output.Call(f);
             });
+        }
+    }
+
+    [Name("Pure Prefab")]
+    [Description("Creates a pure object, for use in other layout nodes.")]
+    [Category("Generation")]
+    public class PurePrefabNode : PureFunctionNode<GameObjectCreationInfo, GameObject>
+    {
+        public override GameObjectCreationInfo Invoke(GameObject prefab)
+        {
+            var creationInfo = new GameObjectCreationInfo(prefab.name);
+            creationInfo.SetTemplate(prefab);
+            return creationInfo;
         }
     }
 }
