@@ -1,0 +1,14 @@
+{
+    "name": "Abilities",
+    "references": [
+        "GUID:dfffeac1da6b748c4994c3b7ad2c72e6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

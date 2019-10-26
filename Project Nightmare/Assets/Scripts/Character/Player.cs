@@ -31,6 +31,18 @@ public class Player : MonoBehaviour
         }
 
         HandleCameraInput();
+
+        HandlePlayerInputs();
+    }
+
+    private void HandlePlayerInputs()
+    {
+        PlayerCharacterInputs inputs = new PlayerCharacterInputs();
+        inputs.CameraRotation = OrbitCamera.transform.rotation;
+        inputs.MoveForward = Input.GetAxis("Vertical");
+        inputs.MoveRight = Input.GetAxis("Horizontal");
+
+        Character.SetInputs(ref inputs);
     }
 
     private void HandleCameraInput()
