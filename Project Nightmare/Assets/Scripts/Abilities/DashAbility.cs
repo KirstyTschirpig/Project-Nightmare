@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DashAbility : PlayerAbility
 {
+    [AbilitySetting]
     public float DashSpeed;
 
     protected override void AbilityActivated(Transform target)

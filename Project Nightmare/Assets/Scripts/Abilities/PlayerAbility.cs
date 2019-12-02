@@ -1,13 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using KinematicCharacterController;
+﻿using System;
 using UnityEngine;
 
 public abstract class PlayerAbility
 {
+    [AbilitySetting]
     protected string AbilityName;
+    [AbilitySetting]
     protected float AbilityCooldown;
+    [AbilitySetting]
     protected float AbilityDuration;
+
     public bool IsReady { get; protected set; }
 
     protected GlobalTimerManager.TimerHandle timerHandle;
@@ -78,4 +80,9 @@ public abstract class PlayerAbility
     {
         IsReady = true;
     }
+}
+
+public class AbilitySetting : Attribute
+{
+
 }
