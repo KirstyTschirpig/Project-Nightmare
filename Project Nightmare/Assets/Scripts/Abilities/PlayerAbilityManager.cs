@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,7 +18,7 @@ public class PlayerAbilityManager : LazySingleton<PlayerAbilityManager>
         }
     }
 
-    private PlayerAbility CreateAbility(int handle)
+    public PlayerAbility CreateAbility(int handle)
     {
         if (abilities == null)
         {

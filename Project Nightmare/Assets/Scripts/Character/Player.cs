@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController.Examples;
 using System.Linq;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     public ExampleCharacterCamera OrbitCamera;
     public Transform CameraFollowPoint;
-    public CharacterController Character;
+    [FormerlySerializedAs("Character")] public NightmareCharacterController nightmareCharacter;
 
     private Vector3 lookInputVector = Vector3.zero;
 
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour
         OrbitCamera.SetFollowTransform(CameraFollowPoint);
 
         // Ignore the character's collider(s) for camera obstruction checks
-        OrbitCamera.IgnoredColliders = Character.GetComponentsInChildren<Collider>().ToList();
+        OrbitCamera.IgnoredColliders = nightmareCharacter.GetComponentsInChildren<Collider>().ToList();
     }
 
     void Update()
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
         inputs.MoveForward = Input.GetAxis("Vertical");
         inputs.MoveRight = Input.GetAxis("Horizontal");
 
-        Character.SetInputs(ref inputs);
+        nightmareCharacter.SetInputs(ref inputs);
     }
 
     private void HandleCameraInput()

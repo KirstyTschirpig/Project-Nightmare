@@ -78,6 +78,17 @@ public class GlobalTimerManager : LazySingleton<GlobalTimerManager>
         }
     }
 
+    public void ResetTimer(uint handle)
+    {
+        if (!timers.ContainsKey(handle))
+        {
+            Debug.LogError($"Warning: Timer with handle {handle} has already ended.");
+            return;
+        }
+
+        timers[handle].remaining = timers[handle].length;
+    }
+
     public TimerHandle CreateTimer(float length, OnTimerComplete onTimerComplete, bool repeating = false)
     {
         uint key;
@@ -87,7 +98,7 @@ public class GlobalTimerManager : LazySingleton<GlobalTimerManager>
             key = timerKey++;
         }
 
-        Timer timer = new Timer()
+        Timer timer = new Timer
         {
             isPaused = false,
             isRepeating = repeating,
@@ -139,7 +150,7 @@ public class GlobalTimerManager : LazySingleton<GlobalTimerManager>
     {
         if (!timers.ContainsKey(handle))
         {
-            Debug.LogError($"Warning: Timer with handle {handle} has already ended.");
+            Debug.LogError($"Warning: Timer with handle {handle} has already ended and was not marked as repeating.");
         }
 
         timers.Remove(handle);

@@ -1,7 +1,9 @@
 {
     "name": "Abilities",
     "references": [
-        "GUID:dfffeac1da6b748c4994c3b7ad2c72e6"
+        "GUID:dfffeac1da6b748c4994c3b7ad2c72e6",
+        "GUID:bb0814ee22a0f4c49a5c276716c4024a",
+        "GUID:cce36a323e2c94a19ad99e210b8115c4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
